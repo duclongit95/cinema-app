@@ -7,11 +7,9 @@ import theme from "./asset/stylesTheme/theme";
 import { ThemeProvider } from "@material-ui/core";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
   document.getElementById("root")
 );
 
