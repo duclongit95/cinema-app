@@ -1,13 +1,15 @@
 import React from "react";
+import MovieList from "./components/MovieList";
 import MyCarousel from "./components/MyCarousel";
 
 HomePage.propTypes = {};
 
 function HomePage(props) {
   return (
-    <div>
+    <React.Fragment>
       <MyCarousel />
-    </div>
+      <MovieList />
+    </React.Fragment>
   );
 }
 
