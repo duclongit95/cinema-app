@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import theme from "./asset/material-ui/theme";
 import { ThemeProvider } from "@material-ui/core";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <App />

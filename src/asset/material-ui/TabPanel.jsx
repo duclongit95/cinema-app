@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Paper } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -15,8 +15,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
       {value === index && <Box p={3}>{children}</Box>}
