@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CarouselSlide from "constant/carousel-slide";
-import Slider from "react-slick";
 import { makeStyles } from "@material-ui/core";
+import CarouselSlide from "constant/carousel-slide";
+import React from "react";
+import Slider from "react-slick";
 
 HomeCarousel.propTypes = {};
 

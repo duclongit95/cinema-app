@@ -73,7 +73,6 @@ function HomeMovie(props) {
   const [movieList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(true);
   const movieListComming = movieList.reverse();
-  console.log(movieList);
 
   const handleChangeTabs = (e, newValue) => {
     setValue(newValue);
@@ -99,8 +98,8 @@ function HomeMovie(props) {
         onChange={handleChangeTabs}
         indicatorColor="primary"
         textColor="primary"
-        variant="fullWidth"
         aria-label="simple tabs example"
+        centered
       >
         <Tab label="Đang chiếu" />
         <Tab label="Sắp chiếu" />

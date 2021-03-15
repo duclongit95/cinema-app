@@ -1,17 +1,20 @@
+import { ThemeProvider } from "@material-ui/core";
+import App from "App";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import theme from "./asset/material-ui/theme";
-import { ThemeProvider } from "@material-ui/core";
-
-import "slick-carousel/slick/slick.css";
+import { Provider } from "react-redux";
+import store from "redux/store/store";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import theme from "./asset/material-ui/theme";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </ThemeProvider>,
   document.getElementById("root")
 );
