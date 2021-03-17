@@ -114,7 +114,7 @@ function Footer(props) {
                   Brand Guidelines
                 </Link>
               </Grid>
-              <Grid xs={6}>
+              <Grid item xs={6}>
                 <Link className={classes.link} to="#">
                   Thoả thuận sử dụng
                 </Link>
@@ -201,7 +201,7 @@ function Footer(props) {
           </Grid>
           <Grid item xs={12} md={4}>
             <Grid container>
-              <Grid xs={6}>
+              <Grid item xs={6}>
                 <Typography variant="subtitle2" className={classes.heading}>
                   Mobile App
                 </Typography>
@@ -212,7 +212,7 @@ function Footer(props) {
                   <img className={classes.logoPrimary} src={ANDROID} alt="" />
                 </Link>
               </Grid>
-              <Grid xs={6}>
+              <Grid item xs={6}>
                 <Typography variant="subtitle2" className={classes.heading}>
                   Social
                 </Typography>

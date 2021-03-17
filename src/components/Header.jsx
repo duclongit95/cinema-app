@@ -12,10 +12,18 @@ import {
   SwipeableDrawer,
   List,
   ListItem,
+  Dialog,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useState } from "react";
 import { useTheme } from "@material-ui/styles";
+import Register from "pages/Auth/components/Register";
+import Login from "pages/Auth/components/Login";
+import { useDispatch, useSelector } from "react-redux";
+import { AccountCircle } from "@material-ui/icons";
+import { actLogoutUser } from "redux/slice/userSlice";
 
 Header.propTypes = {};
 
@@ -61,6 +69,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     color: "#fff",
   },
+  user: {
+    fontSize: 40,
+  },
 }));
 
 // The app bar elevates on scroll to communicate that the user is not at the top of the page.
@@ -80,12 +91,43 @@ function Header(props) {
   const theme = useTheme();
   const mediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [isDialog, setIsDialog] = useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+  const isLogin = !!currentUser.accessToken;
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
   const handleOnChange = (e, newValue) => {
     setValue(newValue);
+  };
+
+  const handleIsDialog = (value) => {
+    setIsDialog(value);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear("USER");
+    dispatch(actLogoutUser());
+    setAnchorEl(null);
   };
 
   const menus = (
@@ -102,13 +144,58 @@ function Header(props) {
         <Tab className={classes.tab} label="Ứng dụng"></Tab>
       </Tabs>
 
-      <Button
-        className={classes.btnSignIn}
-        variant="contained"
-        color="secondary"
+      {isLogin ? (
+        <AccountCircle
+          className={classes.user}
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClickMenu}
+        />
+      ) : (
+        <Button
+          className={classes.btnSignIn}
+          variant="contained"
+          color="secondary"
+          onClick={handleOpenDialog}
+        >
+          Đăng nhập
+        </Button>
+      )}
+
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        getContentAnchorEl={null}
       >
-        Đăng nhập
-      </Button>
+        <MenuItem onClick={handleCloseMenu}>Thông tin tài khoản</MenuItem>
+        <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
+      </Menu>
+
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        aria-labelledby="form-dialog-title"
+      >
+        {isDialog ? (
+          <Login
+            handleIsDialog={handleIsDialog}
+            onCloseDialog={handleCloseDialog}
+          />
+        ) : (
+          <Register handleIsDialog={handleIsDialog} />
+        )}
+      </Dialog>
     </React.Fragment>
   );
 

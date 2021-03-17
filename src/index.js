@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@material-ui/core";
 import App from "App";
+import { SnackbarProvider } from "notistack";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -13,7 +14,9 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <App />
+      <SnackbarProvider maxSnack={3}>
+        <App />
+      </SnackbarProvider>
     </Provider>
   </ThemeProvider>,
   document.getElementById("root")
