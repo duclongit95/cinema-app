@@ -1,13 +1,14 @@
 import axiosClient from "./axiosClient";
 
 const cinemaApi = {
-  getCategoryGroupCinemaList() {
+  // API (2)
+  getCategoryGroupCinemaListApi() {
     const url = "/QuanLyRap/LayThongTinHeThongRap";
     return axiosClient.get(url);
   },
 
-  getGroupCinemaList(params) {
-    const url = "QuanLyRap/LayThongTinLichChieuHeThongRap?";
+  getGroupCinemaListApi(params) {
+    const url = "QuanLyRap/LayThongTinLichChieuHeThongRap";
     return axiosClient.get(url, { params });
   },
 };

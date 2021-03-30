@@ -4,7 +4,6 @@ import userApi from "api/userApi";
 export const actLoginUser = createAsyncThunk("actLoginUser", async (data) => {
   const result = await userApi.login(data);
   localStorage.setItem("USER", JSON.stringify(result.data));
-  console.log("AAA");
 
   return result.data;
 });

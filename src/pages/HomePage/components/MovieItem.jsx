@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 MovieItem.propTypes = {
   movie: PropTypes.object,
@@ -60,7 +61,13 @@ export default function MovieItem({ movie }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="contained" size="small" color="secondary">
+        <Button
+          component={Link}
+          to={`/detail-movie/${movie.maPhim}`}
+          variant="contained"
+          size="small"
+          color="secondary"
+        >
           Mua vé
         </Button>
       </CardActions>

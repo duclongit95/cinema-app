@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import InputField from "components/InputField";
+import PasswordField from "components/PasswordField";
 import PropTypes from "prop-types";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -75,7 +76,7 @@ export default function LoginForm(props) {
         </Typography>
         <form className={classes.form} onSubmit={form.handleSubmit(onSubmit)}>
           <InputField form={form} name="taiKhoan" label="Tài khoản" />
-          <InputField form={form} name="matKhau" label="Mật khẩu" />
+          <PasswordField form={form} name="matKhau" label="Mật khẩu" />
           <Button
             type="submit"
             fullWidth

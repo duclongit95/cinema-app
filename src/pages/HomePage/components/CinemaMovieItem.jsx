@@ -8,21 +8,11 @@ import {
 } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import moment from "moment";
-import PropTypes from "prop-types";
 import React from "react";
 
-GroupCinemaMovie.propTypes = {
-  cinemaMovieItem: PropTypes.object,
-};
-
-GroupCinemaMovie.defaultProps = {
-  cinemaMovieItem: null,
-};
+CinemaMovieItem.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     flexShrink: 0,
@@ -42,15 +32,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GroupCinemaMovie({ cinemaMovieItem }) {
-  const classes = useStyles();
-  const { lstLichChieuTheoPhim } = cinemaMovieItem;
+function CinemaMovieItem(props) {
+  const { cinemaMovie } = props;
 
   const currentDay = "2019-01-01";
-  const todayTimeList = lstLichChieuTheoPhim.filter(
+  const todayTimeList = cinemaMovie.lstLichChieuTheoPhim.filter(
     (lichChieu) => lichChieu.ngayChieuGioChieu.slice(0, 10) === currentDay
   );
 
+  const classes = useStyles();
   return (
     <Accordion>
       <AccordionSummary
@@ -61,12 +51,12 @@ function GroupCinemaMovie({ cinemaMovieItem }) {
         <Typography className={classes.heading}>
           <img
             className={classes.imgHeading}
-            src={cinemaMovieItem.hinhAnh}
+            src={cinemaMovie.hinhAnh}
             alt=""
           />
         </Typography>
         <Typography className={classes.secondaryHeading}>
-          {cinemaMovieItem.tenPhim}
+          {cinemaMovie.tenPhim}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
@@ -87,4 +77,4 @@ function GroupCinemaMovie({ cinemaMovieItem }) {
   );
 }
 
-export default GroupCinemaMovie;
+export default CinemaMovieItem;

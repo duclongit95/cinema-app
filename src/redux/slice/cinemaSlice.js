@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import cinemaApi from "api/cinemaApi";
 
-export const setCategoryGroupCinemaList = createAsyncThunk(
+export const categoryGroupCinemaListAct = createAsyncThunk(
   "cinema/setCategoryGroupCinemaList",
   async () => {
-    const result = await cinemaApi.getCategoryGroupCinemaList();
+    const result = await cinemaApi.getCategoryGroupCinemaListApi();
     return result.data;
   }
 );
 
-export const setGroupCinemaList = createAsyncThunk(
+export const groupCinemaListAct = createAsyncThunk(
   "cinema/setGroupCinemaList",
   async (params) => {
-    const result = await cinemaApi.getGroupCinemaList(params);
+    const result = await cinemaApi.getGroupCinemaListApi(params);
     return result.data[0].lstCumRap;
   }
 );
@@ -26,14 +26,19 @@ const cinemaSlice = createSlice({
   },
   reducers: {
     setGroupCinemaMovieList: (state, action) => {
-      state.groupCinemaMovieList = action.payload;
+      const cGroupCinemaList = [...state.groupCinemaList];
+
+      const index = state.groupCinemaList.findIndex(
+        (item) => item.maCumRap === action.payload
+      );
+      state.groupCinemaMovieList = cGroupCinemaList[index].danhSachPhim;
     },
   },
   extraReducers: {
-    [setCategoryGroupCinemaList.fulfilled]: (state, action) => {
+    [categoryGroupCinemaListAct.fulfilled]: (state, action) => {
       state.categoryGroupCinemaList = action.payload;
     },
-    [setGroupCinemaList.fulfilled]: (state, action) => {
+    [groupCinemaListAct.fulfilled]: (state, action) => {
       state.groupCinemaList = action.payload;
     },
   },

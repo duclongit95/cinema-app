@@ -24,6 +24,7 @@ import Login from "pages/Auth/components/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { AccountCircle } from "@material-ui/icons";
 import { actLogoutUser } from "redux/slice/userSlice";
+import { Link } from "react-router-dom";
 
 Header.propTypes = {};
 
@@ -138,7 +139,12 @@ function Header(props) {
         onChange={handleOnChange}
         indicatorColor="primary"
       >
-        <Tab className={classes.tab} label="Trang chủ"></Tab>
+        <Tab
+          component={Link}
+          to="/"
+          className={classes.tab}
+          label="Trang chủ"
+        ></Tab>
         <Tab className={classes.tab} label="Lịch chiếu"></Tab>
         <Tab className={classes.tab} label="Cụm rạp"></Tab>
         <Tab className={classes.tab} label="Ứng dụng"></Tab>

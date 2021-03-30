@@ -1,6 +1,8 @@
 import Footer from "components/Footer";
 import Header from "components/Header";
+import Loading from "components/Loading";
 import React from "react";
+import { Suspense } from "react";
 import { Route } from "react-router-dom";
 
 const HomeLayout = (props) => {
@@ -19,7 +21,9 @@ export default function HomeTemplate({ Component, ...props }) {
       {...props}
       render={(propsComponent) => (
         <HomeLayout>
-          <Component {...propsComponent} />
+          <Suspense fallback={<Loading />}>
+            <Component {...propsComponent} />
+          </Suspense>
         </HomeLayout>
       )}
     />
